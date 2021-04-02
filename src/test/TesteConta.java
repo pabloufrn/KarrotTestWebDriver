@@ -1,6 +1,5 @@
 package test;
 
-
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -54,11 +53,157 @@ public class TesteConta {
 		WebElement buttonConfirm = driver.findElement(By.xpath(
 				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/div[2]/button"));
 		inputEmail.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
-		inputEmail.sendKeys("foo2@foo.com");
+		inputEmail.sendKeys("foo3@foo.com");
+		inputPass.sendKeys(" ");
+		buttonConfirm.click();
+		driver.findElement(
+			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[2]/div[2]/div[2]/div/div"));
+	}
+	@Test
+	public void testChangeEmailWrongPassword() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputEmail = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/div[2]/button"));
+		inputEmail.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		inputEmail.sendKeys("foo3@foo.com");
 		inputPass.sendKeys("wrong pass");
 		buttonConfirm.click();
 		driver.findElement(
 			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[2]/div[2]/div[2]/div/div"));
+
+	}
+	@Test
+	public void testChangeEmailBigText() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputEmail = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/div[2]/button"));
+		inputEmail.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		inputEmail.sendKeys("abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijab@foo.com");
+		inputPass.sendKeys("foofoo");
+		buttonConfirm.click();
+		driver.findElement(
+			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[1]/label[1]/div[2]/div[2]/div/div"));
+	}
+	@Test
+	public void testChangePasswordEmptyNewPassword() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputNewPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputOldPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/div/button"));
+		inputNewPass.sendKeys(" ");
+		inputOldPass.sendKeys("foofoo");
+		buttonConfirm.click();
+		driver.findElement(
+			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[2]/div/div"));
+	}
+	@Test
+	public void testChangePasswordEmptyOldPassword() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputNewPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputOldPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/div/button"));
+		inputNewPass.sendKeys("foo2foo");
+		inputOldPass.sendKeys(" ");
+		buttonConfirm.click();
+		driver.findElement(
+			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[2]/div/div"));
+	}
+	@Test
+	public void testChangePasswordWrongOldPassword() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputNewPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputOldPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/div/button"));
+		inputNewPass.sendKeys("foo2foo");
+		inputOldPass.sendKeys("wrongpass");
+		buttonConfirm.click();
+		driver.findElement(
+			By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[2]/div/div"));
+	}
+	@Test
+	public void testChangePasswordNewPasswordBigText() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputNewPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputOldPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/div/button"));
+		inputNewPass.sendKeys("abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+				"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijab@foo.com");
+		inputOldPass.sendKeys("foofoo");
+		buttonConfirm.click();
+		try {
+			driver.findElement(
+				By.xpath("/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[2]/div/div"));
+		} catch (Exception e) {
+			inputNewPass.sendKeys("foofoo");
+			inputOldPass.sendKeys("abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij" +
+					"abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghijab@foo.com");
+			buttonConfirm.click();
+			throw e;
+		}
+	}
+	@Test
+	public void testChangePasswordHappyPath() throws Exception {
+		driver.get(baseUrl+"#/settings");
+		WebElement inputNewPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[1]/div[2]/div[1]/div/input"));
+		WebElement inputOldPass = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/label[2]/div[2]/div[1]/div/input"));
+		WebElement buttonConfirm = driver.findElement(By.xpath(
+				"/html/body/div[1]/div/div/div/div[2]/main/div/div/div[3]/div[2]/div[2]/div/button"));
+		inputNewPass.sendKeys("foo2foo");
+		inputOldPass.sendKeys("foofoo");
+		buttonConfirm.click();
+		driver.findElement(
+			By.cssSelector(".q-notification__message"));
+		// Change back password
+		inputNewPass.sendKeys("foofoo");
+		inputOldPass.sendKeys("foo2foo");
+		buttonConfirm.click();
 	}
 
 	@After
